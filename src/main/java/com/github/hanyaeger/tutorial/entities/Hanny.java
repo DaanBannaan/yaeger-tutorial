@@ -2,6 +2,8 @@ package com.github.hanyaeger.tutorial.entities;
 
 import com.github.hanyaeger.api.Coordinate2D;
 import com.github.hanyaeger.api.Size;
+import com.github.hanyaeger.api.entities.Collided;
+import com.github.hanyaeger.api.entities.Collider;
 import com.github.hanyaeger.api.entities.Newtonian;
 import com.github.hanyaeger.api.entities.SceneBorderTouchingWatcher;
 import com.github.hanyaeger.api.entities.impl.DynamicSpriteEntity;
@@ -9,9 +11,10 @@ import com.github.hanyaeger.api.scenes.SceneBorder;
 import com.github.hanyaeger.api.userinput.KeyListener;
 import javafx.scene.input.KeyCode;
 
+import java.util.List;
 import java.util.Set;
 
-public class Hanny extends DynamicSpriteEntity implements KeyListener, SceneBorderTouchingWatcher, Newtonian {
+public class Hanny extends DynamicSpriteEntity implements Collided, KeyListener, SceneBorderTouchingWatcher, Newtonian {
 
     public Hanny(Coordinate2D location){
         super("sprites/hanny.png", location, new Size(20,40), 1, 2);
@@ -53,5 +56,10 @@ public class Hanny extends DynamicSpriteEntity implements KeyListener, SceneBord
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onCollision(List<Collider> list) {
+        System.out.println("hoi collission");
     }
 }
